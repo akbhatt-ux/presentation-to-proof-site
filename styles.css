@@ -513,6 +513,54 @@ html[data-proof="on"] #main::after{
   align-items:center;
   justify-content:center;
   padding: 56px 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section wrap-around connectors: split from spine, wrap, then merge */
+.story::before,
+.story::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: clamp(130px, 24vh, 240px);
+  width: clamp(160px, 22vw, 320px);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: .62;
+}
+.story::before{
+  left: calc(50% - 1px);
+  border-top: 2px solid rgba(15,18,24,.10);
+  border-bottom: 2px solid rgba(15,18,24,.10);
+  border-left: 2px solid rgba(15,18,24,.10);
+  border-right: 0;
+  border-radius: 120px 0 0 120px;
+}
+.story::after{
+  right: calc(50% - 1px);
+  border-top: 2px solid rgba(15,18,24,.10);
+  border-bottom: 2px solid rgba(15,18,24,.10);
+  border-right: 2px solid rgba(15,18,24,.10);
+  border-left: 0;
+  border-radius: 0 120px 120px 0;
+}
+html[data-proof="on"] .story::before,
+html[data-proof="on"] .story::after{
+  border-color: rgba(255,255,255,.18);
+  opacity: .7;
+}
+
+/* Slight variation so connectors feel intentional rather than copy-paste */
+.story:nth-of-type(odd)::before,
+.story:nth-of-type(odd)::after{
+  height: clamp(120px, 22vh, 210px);
+  width: clamp(150px, 20vw, 280px);
+}
+.story:nth-of-type(3n)::before,
+.story:nth-of-type(3n)::after{
+  height: clamp(145px, 25vh, 250px);
 }
 
 /* Tighter pacing before the big shift */
