@@ -464,6 +464,18 @@ html[data-proof="on"] .progress{ background: rgba(255,255,255,.10); }
   padding: 56px 0;
 }
 
+/* Tighter pacing before the big shift */
+#hero.story,
+#artifacts.story,
+#gap.story{
+  min-height: 112vh;
+}
+#hero.story .sticky,
+#artifacts.story .sticky,
+#gap.story .sticky{
+  padding: 40px 0;
+}
+
 .story--shift{ min-height: 220vh; }
 .story--demo{ min-height: 180vh; }
 .story--compare{ min-height: 165vh; }
@@ -1346,6 +1358,11 @@ html[data-proof="on"] .demoShell__dot{ background: rgba(255,255,255,.14); }
 @media (max-width: 980px){
   .story--demo{ min-height: 150vh; }
   .story--compare{ min-height: 145vh; }
+  #hero.story,
+  #artifacts.story,
+  #gap.story{
+    min-height: 102vh;
+  }
   .reveal{
     --rx: calc(var(--rx, 0px) * .45);
     --ry: 24px;
