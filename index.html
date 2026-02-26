@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en" data-proof="off">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>From Presentation to Proof — Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- Background layers that crossfade during the scroll-based shift -->
+    <div id="bg" aria-hidden="true">
+      <div id="bg-dull">
+        <div class="grid"></div>
+      </div>
+
+      <div id="bg-vivid">
+        <div class="orb orb--a"></div>
+        <div class="orb orb--b"></div>
+        <div class="orb orb--c"></div>
+        <div id="sweep"></div>
+      </div>
+
+      <div id="noise"></div>
+    </div>
+
+    <header class="topbar">
+      <div class="topbar__inner">
+        <div class="brand">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span class="brand__title">From Presentation to Proof</span>
+          <span class="brand__sub">Internal advocacy prototype</span>
+        </div>
+
+        <div class="modePill" aria-label="Mode indicator">
+          <span class="modePill__label modePill__label--left">Presentation</span>
+          <span class="modePill__track" aria-hidden="true">
+            <span class="modePill__thumb" aria-hidden="true"></span>
+          </span>
+          <span class="modePill__label modePill__label--right">Proof</span>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="story" id="hero">
+        <div class="sticky">
+          <div class="container hero">
+            <p class="kicker">A scroll-based argument for interactive prototyping</p>
+            <h1 class="hero__title">From Presentation to Proof.</h1>
+            <p class="hero__lede">
+              Wireframes explain structure. Videos simulate behavior.<br />
+              Prototypes let teams experience reality.
+            </p>
+
+            <div class="hero__ctaRow">
+              <button class="btn btn--primary" id="ctaScroll" type="button">
+                Move to Proof
+              </button>
+              <span class="hero__hint">Scroll to feel the shift.</span>
+            </div>
+
+            <div class="hero__micro">
+              <div class="microCard">
+                <div class="microCard__title">Presentation</div>
+                <div class="microCard__body">Communicates intent.</div>
+              </div>
+              <div class="microCard microCard--accent">
+                <div class="microCard__title">Proof</div>
+                <div class="microCard__body">Reduces interpretation.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTIFACTS -->
+      <section class="story" id="artifacts">
+        <div class="sticky">
+          <div class="container">
+            <h2 class="sectionTitle">Useful artifacts. Different limits.</h2>
+            <p class="sectionLede">
+              We use these because they’re valuable. The question is what they can (and can’t) validate.
+            </p>
+
+            <div class="cards">
+              <article class="card panel">
+                <div class="card__icon" aria-hidden="true">▦</div>
+                <h3 class="card__title">Structure</h3>
+                <p class="card__body">Defines layout, hierarchy, and intent.</p>
+                <p class="card__meta">Interaction: implied.</p>
+                <p class="card__foot">Helpful for discussion. Limited for validation.</p>
+              </article>
+
+              <article class="card panel">
+                <div class="card__icon" aria-hidden="true">▶</div>
+                <h3 class="card__title">Simulated interaction</h3>
+                <p class="card__body">A pre-rendered demo video (e.g., After Effects) that shows a curated path.</p>
+                <p class="card__meta">Scripted. Linear. Non-interactive.</p>
+                <p class="card__foot">Great for storytelling. Limited for testing.</p>
+              </article>
+
+              <article class="card panel">
+                <div class="card__icon" aria-hidden="true">⌘</div>
+                <h3 class="card__title">System definition</h3>
+                <p class="card__body">Documents logic, relationships, and rules.</p>
+                <p class="card__meta">Experience: not embodied.</p>
+                <p class="card__foot">Clarifies structure. Not behavior.</p>
+              </article>
+            </div>
+
+            <p class="anchorLine">Presentation communicates intent.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- GAP -->
+      <section class="story" id="gap">
+        <div class="sticky">
+          <div class="container gap">
+            <p class="kicker">The gap</p>
+
+            <div class="gap__stack">
+              <div class="gapLine panel">
+                <span class="gapLine__big">Intent is not interaction.</span>
+                <span class="gapLine__small">A static artifact can’t respond to the user.</span>
+              </div>
+              <div class="gapLine panel">
+                <span class="gapLine__big">A walkthrough is not a workflow.</span>
+                <span class="gapLine__small">Curated paths hide edge cases.</span>
+              </div>
+              <div class="gapLine panel">
+                <span class="gapLine__big">A simulation is not a system.</span>
+                <span class="gapLine__small">Behavior is where risk shows up.</span>
+              </div>
+            </div>
+
+            <div class="slackToast panel" role="note" aria-label="A common question">
+              <div class="slackToast__badge" aria-hidden="true">💬</div>
+              <div class="slackToast__text">
+                <div class="slackToast__title">Quick question</div>
+                <div class="slackToast__body">What happens when the headline changes?</div>
+              </div>
+            </div>
+
+            <p class="anchorLine">Presentation invites interpretation.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHIFT ZONE -->
+      <section class="story story--shift" id="shift-zone" data-shift-zone>
+        <div class="sticky">
+          <div class="container shift">
+            <div class="shift__center panel">
+              <p class="kicker">Scroll to unlock</p>
+
+              <h2 class="shift__title" aria-live="polite">
+                <span class="shift__titleA">Presentation</span>
+                <span class="shift__arrow" aria-hidden="true">→</span>
+                <span class="shift__titleB">Proof</span>
+              </h2>
+
+              <p class="shift__lede">When behavior is the product, the artifact has to react.</p>
+
+              <div class="shift__meter" aria-hidden="true">
+                <span class="shift__meterFill"></span>
+              </div>
+
+              <div id="crack" aria-hidden="true"></div>
+
+              <p class="shift__caption">Now we can test reality.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROOF: TEAM WORKFLOW EXAMPLE -->
+      <section class="story story--demo story--compare" id="ai-proof">
+        <div class="sticky">
+          <div class="container">
+            <div class="sectionHead">
+              <div>
+                <p class="kicker">Team workflow example</p>
+                <h2 class="sectionTitle">Particle microanimations for title modules</h2>
+                <p class="sectionLede">
+                  Pre-rendered motion demos show one timeline. Interactive prototypes let teams tune timing, density, and behavior live.
+                </p>
+              </div>
+              <div class="pillNote panel">
+                <div class="pillNote__title">Decision speed improves</div>
+                <div class="pillNote__body">Adjust behavior live and align instantly.</div>
+              </div>
+            </div>
+
+            <div class="split split--workflow" id="comparison">
+              <section class="panel split__pane legacyLane" aria-label="Traditional process artifacts">
+                <div class="split__head">
+                  <div>
+                    <div class="split__label">Presentation artifacts</div>
+                    <div class="split__sub">Docs, wireframes, flowcharts, and rendered playback</div>
+                  </div>
+                  <div class="split__tag">Old process</div>
+                </div>
+
+                <div class="legacyStack">
+                  <article class="legacyCard panel">
+                    <div class="legacyCard__title">Content spec doc</div>
+                    <div class="legacyCard__body">Requirements, assumptions, and open questions are documented before motion behavior is visible.</div>
+                    <ul class="artifactList">
+                      <li><strong>Module:</strong> Homepage title animation</li>
+                      <li><strong>Goal:</strong> Particle trail appears as headline writes in</li>
+                      <li><strong>Acceptance:</strong> Performance target 60fps on modern laptops</li>
+                    </ul>
+                    <div class="artifactNote">Open question: Should particles taper at word end or run continuously?</div>
+                  </article>
+
+                  <article class="legacyCard panel">
+                    <div class="legacyCard__title">Concept sketches + wireframes</div>
+                    <div class="sketchGrid" aria-hidden="true">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                    <ul class="artifactList artifactList--tight">
+                      <li>Concept A: clean write-on, low density</li>
+                      <li>Concept B: denser burst on each character</li>
+                      <li>Concept C: larger particles, slower fade</li>
+                    </ul>
+                  </article>
+
+                  <article class="legacyCard panel">
+                    <div class="legacyCard__title">Flowchart review</div>
+                    <div class="flowChart" aria-hidden="true">
+                      <div class="flowNode">Brief</div>
+                      <div class="flowNode">Design</div>
+                      <div class="flowNode">Animate</div>
+                      <div class="flowNode">Review</div>
+                    </div>
+                    <div class="artifactFlow">
+                      Brief approved -> motion mock created -> product review -> developer implementation ticket
+                    </div>
+                  </article>
+
+                  <article class="legacyCard panel">
+                    <div class="legacyCard__title">Pre-rendered animation clip</div>
+                    <div class="videoStub" aria-hidden="true">
+                      <div class="videoStub__scrub"></div>
+                    </div>
+                    <div class="artifactNote">Review note: "Looks strong in video, but we still need controls for speed, density, and lifespan before implementation."</div>
+                  </article>
+                </div>
+
+                <p class="fineprint muted">Clear artifacts, but behavior feedback arrives late.</p>
+              </section>
+
+              <section class="panel split__pane protoLab" aria-label="Interactive particle title customizer">
+                <div class="split__head">
+                  <div>
+                    <div class="split__label">Interactive proof</div>
+                    <div class="split__sub">Tune text and particle behavior in real time</div>
+                  </div>
+                  <div class="split__tag split__tag--glow">Customizer</div>
+                </div>
+
+                <div class="protoPreview" id="particleStage">
+                  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+                  <div class="protoPreview__text" id="particlePreviewText">Design in motion</div>
+                </div>
+
+                <form class="controls" id="particleControls">
+                  <label class="control">
+                    <span>Custom text</span>
+                    <input id="particleTextInput" type="text" maxlength="34" value="Design in motion" />
+                  </label>
+
+                  <label class="control">
+                    <span>Reveal mode</span>
+                    <select id="revealMode">
+                      <option value="letter" selected>Letter by letter</option>
+                      <option value="word">Word by word</option>
+                    </select>
+                  </label>
+
+                  <label class="control control--inline">
+                    <input id="fadeInToggle" type="checkbox" checked />
+                    <span>Fade units in during reveal</span>
+                  </label>
+
+                  <label class="control">
+                    <span>Overlap <strong id="overlapVal">20%</strong></span>
+                    <input id="overlapAmount" type="range" min="0" max="0.8" step="0.05" value="0.2" />
+                  </label>
+
+                  <label class="control">
+                    <span>Text animation speed <strong id="textSpeedVal">1.0x</strong></span>
+                    <input id="textSpeed" type="range" min="0.5" max="2.2" step="0.1" value="1.0" />
+                  </label>
+
+                  <label class="control">
+                    <span>Particle speed <strong id="particleSpeedVal">1.0x</strong></span>
+                    <input id="particleSpeed" type="range" min="0.4" max="2.2" step="0.1" value="1.0" />
+                  </label>
+
+                  <label class="control">
+                    <span>Density <strong id="particleDensityVal">16</strong></span>
+                    <input id="particleDensity" type="range" min="6" max="34" step="1" value="16" />
+                  </label>
+
+                  <label class="control">
+                    <span>Lifespan <strong id="particleLifeVal">1100ms</strong></span>
+                    <input id="particleLife" type="range" min="450" max="2200" step="50" value="1100" />
+                  </label>
+
+                  <label class="control">
+                    <span>Particle size <strong id="particleSizeVal">3.5</strong></span>
+                    <input id="particleSize" type="range" min="1" max="8" step="0.5" value="3.5" />
+                  </label>
+
+                  <label class="control">
+                    <span>Particle opacity <strong id="particleOpacityVal">0.70</strong></span>
+                    <input id="particleOpacity" type="range" min="0.15" max="1" step="0.05" value="0.70" />
+                  </label>
+
+                  <div class="controls__actions">
+                    <button class="btn btn--primary btn--glow" id="particlePlay" type="submit">Play animation</button>
+                  </div>
+                </form>
+
+                <p class="fineprint">Real-time controls make tradeoffs obvious before implementation starts.</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE -->
+      <section class="story" id="value">
+        <div class="sticky">
+          <div class="container">
+            <h2 class="sectionTitle">Why teams adopt proof</h2>
+            <p class="sectionLede">
+              Interactive prototypes don’t replace artifacts. They reduce risk by making behavior tangible earlier.
+            </p>
+
+            <div class="valueGrid">
+              <article class="valueCard panel">
+                <h3 class="valueCard__title">PM outcomes</h3>
+                <ul class="valueList">
+                  <li><strong>Reduced ambiguity</strong> before development begins.</li>
+                  <li><strong>Acceptance criteria, experienced</strong>—not inferred.</li>
+                  <li><strong>Fewer late surprises</strong> when edge cases appear.</li>
+                  <li><strong>Higher confidence</strong> in scope and sequencing.</li>
+                </ul>
+                <p class="valueCard__foot muted">Proof aligns teams before the sprint starts.</p>
+              </article>
+
+              <article class="valueCard panel">
+                <h3 class="valueCard__title">Design outcomes</h3>
+                <ul class="valueList">
+                  <li><strong>States are the product</strong>, not edge cases.</li>
+                  <li><strong>Motion communicates intent</strong> and hierarchy.</li>
+                  <li><strong>Behavior is part of the system</strong>—design it deliberately.</li>
+                  <li><strong>Clearer handoff</strong> through lived interaction.</li>
+                </ul>
+                <p class="valueCard__foot muted">If it can’t be tested, it’s still interpretive.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLOSING -->
+      <section class="story" id="closing">
+        <div class="sticky">
+          <div class="container closing">
+            <h2 class="closing__title">Build in presentation. Decide in proof.</h2>
+            <p class="closing__lede">
+              Interactive prototypes turn interpretation into shared understanding—especially when the feature is behavior-heavy.
+            </p>
+
+            <div class="closing__ctaRow">
+              <button class="btn btn--primary btn--glow" type="button" id="restart">
+                Replay the shift
+              </button>
+              <span class="muted">Prototype earlier. Ship fewer surprises.</span>
+            </div>
+
+            <p class="fineprint muted">
+              This is a lightweight coded prototype (no backend). Replace placeholders with product-specific motion rules as implementation solidifies.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="muted">From Presentation to Proof • Prototype</span>
+        <span class="muted">Built as a scroll narrative + interactive behaviors</span>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
