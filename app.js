@@ -27,6 +27,17 @@ function qsa(sel, el = document) {
   return Array.from(el.querySelectorAll(sel));
 }
 
+function initTopOnReload() {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  const resetTop = () => window.scrollTo(0, 0);
+  window.addEventListener("beforeunload", resetTop);
+  window.addEventListener("pageshow", resetTop);
+  resetTop();
+}
+
 function initScrollShift() {
   const shiftZone = qs("[data-shift-zone]");
   const root = document.documentElement;
@@ -602,6 +613,7 @@ function mountParticleCustomizer() {
 }
 
 function main() {
+  initTopOnReload();
   initIntroAnimation();
   initScrollShift();
   initCTAs();
