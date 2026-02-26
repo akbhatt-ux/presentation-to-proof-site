@@ -75,6 +75,7 @@ function initScrollShift() {
     root.style.setProperty("--crack", crack.toFixed(4));
     root.style.setProperty("--depth", depth.toFixed(4));
     root.style.setProperty("--impact", impact.toFixed(4));
+    root.dataset.impact = impact > 0.03 ? "on" : "off";
 
     const pageProgress = clamp(y / (document.body.scrollHeight - window.innerHeight), 0, 1);
     root.style.setProperty("--scroll", pageProgress.toFixed(4));
@@ -269,6 +270,9 @@ function mountParticleCustomizer() {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
+  const lowPower =
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4);
 
   const state = {
     width: 1,
@@ -283,10 +287,11 @@ function mountParticleCustomizer() {
     raf: 0,
     spawnCarry: 0,
     particles: [],
-    maxParticles: /Mobi|Android/i.test(navigator.userAgent) ? 850 : 1300,
+    maxParticles: /Mobi|Android/i.test(navigator.userAgent) || lowPower ? 520 : 980,
     revealY: 0,
     textFontPx: 62,
     layout: null,
+    inView: true,
   };
 
   const config = {
@@ -300,6 +305,7 @@ function mountParticleCustomizer() {
     size: 3.5,
     opacity: 0.7,
   };
+  const densityScale = lowPower ? 0.72 : 1;
 
   // Canvas is the visual renderer; keep this node for accessibility only.
   previewText.style.opacity = "0";
@@ -504,6 +510,11 @@ function mountParticleCustomizer() {
   }
 
   function frame(now) {
+    if (!state.inView) {
+      state.raf = 0;
+      return;
+    }
+
     const dt = Math.min(42, now - state.lastAt || 16);
     state.lastAt = now;
 
@@ -516,12 +527,12 @@ function mountParticleCustomizer() {
     const lead = drawRevealedText(state.progress);
 
     if (state.progress < 1) {
-      state.spawnCarry += (config.density * dt) / 220;
+      state.spawnCarry += (config.density * densityScale * dt) / 240;
       while (state.spawnCarry >= 1) {
         state.spawnCarry -= 1;
         spawnParticles(lead.leadX, lead.leadY, 1);
       }
-      spawnParticles(lead.leadX, lead.leadY, Math.max(1, Math.round(config.density / 9)));
+      spawnParticles(lead.leadX, lead.leadY, Math.max(1, Math.round((config.density * densityScale) / 10)));
     }
 
     stepParticles(dt);
@@ -595,6 +606,22 @@ function mountParticleCustomizer() {
       state.raf = window.requestAnimationFrame(frame);
     }
   });
+
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        state.inView = entry.isIntersecting;
+        if (state.inView && state.running && !state.raf && !prefersReducedMotion && !document.hidden) {
+          state.lastAt = performance.now();
+          state.raf = window.requestAnimationFrame(frame);
+        }
+      },
+      { threshold: 0.04 }
+    );
+    io.observe(stage);
+  }
 
   window.addEventListener("resize", () => {
     resizeCanvas();

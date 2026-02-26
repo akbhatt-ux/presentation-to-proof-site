@@ -79,7 +79,7 @@ html[data-intro="on"] #hero .hero__micro{
 @keyframes introRise{
   0%{
     opacity: 0;
-    filter: blur(7px);
+    filter: blur(3px);
     transform: translate3d(0, 48px, 0) scale(.97);
   }
   100%{
@@ -102,7 +102,7 @@ html[data-intro="on"] #hero .hero__micro{
   0%{
     opacity: 0;
     transform: scale(1.07);
-    filter: blur(12px);
+    filter: blur(6px);
   }
   100%{
     opacity: calc(1 - var(--v));
@@ -114,7 +114,7 @@ html[data-intro="on"] #hero .hero__micro{
   0%{
     opacity: 0;
     transform: scale(1.1);
-    filter: blur(16px) saturate(1.25);
+    filter: blur(8px) saturate(1.2);
   }
   100%{
     opacity: var(--v);
@@ -151,6 +151,11 @@ html[data-intro="on"] #hero .hero__micro{
   position:absolute;
   inset:-24%;
   pointer-events:none;
+  display:none;
+}
+html[data-impact="on"] #bg::before,
+html[data-impact="on"] #bg::after{
+  display:block;
 }
 #bg::before{
   opacity: calc(var(--impact) * .58);
@@ -159,7 +164,7 @@ html[data-intro="on"] #hero .hero__micro{
     radial-gradient(1200px 700px at 48% 54%, rgba(255,105,180,.26), rgba(255,105,180,0) 72%),
     radial-gradient(1100px 650px at 52% 56%, rgba(99,102,241,.24), rgba(99,102,241,0) 74%);
   mix-blend-mode: screen;
-  filter: blur(28px);
+  filter: blur(18px);
   transform: scale(calc(.96 + var(--impact) * .12));
 }
 #bg::after{
@@ -167,7 +172,7 @@ html[data-intro="on"] #hero .hero__micro{
   background:
     radial-gradient(circle at 50% 54%, rgba(255,255,255,0) 0 30%, rgba(255,255,255,.42) 33%, rgba(255,255,255,0) 44%),
     radial-gradient(circle at 50% 54%, rgba(255,105,180,0) 0 36%, rgba(255,105,180,.28) 40%, rgba(255,105,180,0) 52%);
-  filter: blur(18px);
+  filter: blur(12px);
   transform: scale(calc(.9 + var(--impact) * .2));
 }
 
@@ -227,7 +232,7 @@ html[data-intro="on"] #hero .hero__micro{
   width: 520px;
   height: 520px;
   border-radius: 50%;
-  filter: blur(34px);
+  filter: blur(28px);
   opacity: .55;
   mix-blend-mode: screen;
   transform: translate3d(0,0,0);
@@ -286,7 +291,7 @@ html[data-intro="on"] #hero .hero__micro{
   background:
     radial-gradient(860px 440px at 0% 50%, rgba(255,255,255,0), rgba(255,255,255,0) 36%, rgba(255,255,255,.34) 60%, rgba(255,255,255,0) 78%),
     radial-gradient(1300px 760px at 0% 50%, rgba(255,159,67,0), rgba(255,159,67,0) 32%, rgba(255,105,180,.34) 62%, rgba(255,105,180,0) 82%);
-  filter: blur(24px);
+  filter: blur(18px);
   transform: translateX(calc(-62vw + var(--v)*124vw + var(--impact) * 9vw)) rotate(calc(-6deg - var(--impact) * 1.8deg));
 }
 #sweep::before,
@@ -301,14 +306,14 @@ html[data-intro="on"] #hero .hero__micro{
   background:
     radial-gradient(960px 500px at 0% 50%, rgba(255,255,255,0), rgba(255,255,255,0) 42%, rgba(255,255,255,.62) 64%, rgba(255,255,255,0) 80%),
     linear-gradient(96deg, rgba(255,255,255,0) 24%, rgba(255,190,122,.26) 50%, rgba(255,105,180,0) 78%);
-  filter: blur(14px);
+  filter: blur(10px);
   transform: translateX(calc(-68vw + var(--v)*136vw)) rotate(-4deg);
 }
 #sweep::after{
   opacity: calc(var(--v) * .55);
   background:
     radial-gradient(1450px 880px at 10% 45%, rgba(255,105,180,.0), rgba(255,105,180,.0) 30%, rgba(99,102,241,.26) 56%, rgba(99,102,241,0) 78%);
-  filter: blur(44px);
+  filter: blur(28px);
   transform: translateX(calc(-48vw + var(--v)*116vw)) rotate(-8deg);
 }
 
@@ -326,7 +331,7 @@ html[data-intro="on"] #hero .hero__micro{
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(calc(8px + var(--v) * 10px));
+  backdrop-filter: blur(calc(6px + var(--v) * 6px));
   background: color-mix(
     in srgb,
     rgba(246,247,249,.92) calc(100% - (var(--v) * 100%)),
@@ -466,7 +471,7 @@ html[data-proof="on"] .progress{ background: rgba(255,255,255,.10); }
 /* Scroll reveal motion */
 .reveal{
   opacity: 0;
-  filter: blur(6px);
+  filter: none;
   transform: translate3d(var(--rx, 0px), var(--ry, 26px), 0) scale(var(--rs, .96)) rotate(var(--rr, 0deg));
   transition:
     opacity var(--reveal-duration, 780ms) var(--reveal-ease, cubic-bezier(0.30, 0.00, 0.20, 1.00)),
@@ -516,7 +521,7 @@ html[data-proof="on"] .progress{ background: rgba(255,255,255,.10); }
 
 .reveal.inview{
   opacity: 1;
-  filter: blur(0px);
+  filter: none;
   transform: translate3d(0, 0, 0) scale(1);
 }
 
