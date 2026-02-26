@@ -32,10 +32,20 @@ function initTopOnReload() {
     history.scrollRestoration = "manual";
   }
 
-  const resetTop = () => window.scrollTo(0, 0);
+  const resetTop = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  const resetTopStrong = () => {
+    resetTop();
+    window.requestAnimationFrame(() => {
+      resetTop();
+      window.setTimeout(resetTop, 60);
+      window.setTimeout(resetTop, 220);
+    });
+  };
+
   window.addEventListener("beforeunload", resetTop);
-  window.addEventListener("pageshow", resetTop);
-  resetTop();
+  window.addEventListener("load", resetTopStrong);
+  window.addEventListener("pageshow", resetTopStrong);
+  resetTopStrong();
 }
 
 function initScrollShift() {
